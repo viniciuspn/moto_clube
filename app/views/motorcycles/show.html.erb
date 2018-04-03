@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @motorcycle.model %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @motorcycle.manufacturer %>
+</p>
+
+<p>
+  <strong>Id user:</strong>
+  <%= @motorcycle.id_user %>
+</p>
+
+<p>
+  <strong>Cylinder:</strong>
+  <%= @motorcycle.cylinder %>
+</p>
+
+<p>
+  <strong>Board:</strong>
+  <%= @motorcycle.board %>
+</p>
+
+<%= link_to 'Edit', edit_motorcycle_path(@motorcycle) %> |
+<%= link_to 'Back', motorcycles_path %>
