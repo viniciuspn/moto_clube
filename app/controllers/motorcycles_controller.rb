@@ -4,7 +4,7 @@ class MotorcyclesController < ApplicationController
   # GET /motorcycles
   # GET /motorcycles.json
   def index
-    @motorcycles = Motorcycle.all
+    @motorcycles = current_user.motorcycles.all#
   end
 
   # GET /motorcycles/1
@@ -14,7 +14,7 @@ class MotorcyclesController < ApplicationController
 
   # GET /motorcycles/new
   def new
-    @motorcycle = Motorcycle.new
+    @motorcycle = current_user.motorcycles.new#criar motos pra o usuário
   end
 
   # GET /motorcycles/1/edit
@@ -24,7 +24,7 @@ class MotorcyclesController < ApplicationController
   # POST /motorcycles
   # POST /motorcycles.json
   def create
-    @motorcycle = Motorcycle.new(motorcycle_params)
+    @motorcycle = current_user.motorcycles.new(motorcycle_params)
 
     respond_to do |format|
       if @motorcycle.save
@@ -64,11 +64,13 @@ class MotorcyclesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_motorcycle
-      @motorcycle = Motorcycle.find(params[:id])
+      @motorcycle = current_user.motorcycles.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def motorcycle_params
-      params.require(:motorcycle).permit(:model, :manufacturer, :id_user, :cylinder, :board)
+      params.require(:motorcycle).permit(:model, :manufacturer, :cylinder, :board).tap do |h|
+        h[:user] = current_user#pegar usuário existente
+      end
     end
 end

@@ -1,5 +1,5 @@
 class Motorcycle < ApplicationRecord
-	#belongs_to :name
-	#has_many :id_name, through: :name
-	#has_many :name
+	belongs_to :user
+
+	validates :user_id, presence: true
 end
